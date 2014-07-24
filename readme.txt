@@ -14,6 +14,7 @@ Responsive Facebook - Facebook Like Box and Streams Display - Fully Responsive F
 DEMO - http://connexdallas.com/wpdemo
 
 *   Fully Responsive.
+*	100% Fluid
 *   Customizable Options available.
 *   Tested on all latest wordpress versions.
 *   Stable Version Released.

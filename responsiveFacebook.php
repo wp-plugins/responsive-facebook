@@ -14,8 +14,8 @@ class ResponsiveFacebook extends WP_Widget{
     
     public function __construct() {
         $params = array(
-            'description' => 'Responsive Facebook Widget & Shortcode',
-            'name' => 'Responsive Facebook'
+            'name' => 'Responsive Facebook',
+            'description' => 'Responsive Facebook Widget & Shortcode'
         );
         parent::__construct('ResponsiveFacebook','',$params);
     }
@@ -29,7 +29,7 @@ class ResponsiveFacebook extends WP_Widget{
 	class="widefat"
 	id="<?php echo $this->get_field_id('title');?>"
 	name="<?php echo $this->get_field_name('title');?>"
-        value="<?php echo !empty($title) ? $title : "Responsive Facebook"; ?>" />
+    value="<?php echo !empty($title) ? $title : "Responsive Facebook"; ?>" />
 </p>
 <p>
     <label for="<?php echo $this->get_field_id('fb_url');?>">Facebook Page URL: </label>
@@ -37,13 +37,13 @@ class ResponsiveFacebook extends WP_Widget{
 	class="widefat"
 	id="<?php echo $this->get_field_id('fb_url');?>"
 	name="<?php echo $this->get_field_name('fb_url');?>"
-        value="<?php echo !empty($fb_url) ? $fb_url : "http://www.facebook.com/FacebookDevelopers"; ?>" />
+    value="<?php echo !empty($fb_url) ? $fb_url : "http://www.facebook.com/FacebookDevelopers"; ?>" />
 </p>
 <p>
     <label for="<?php echo $this->get_field_id( 'header' ); ?>">Show Header:</label> 
     <select id="<?php echo $this->get_field_id( 'header' ); ?>"
-        name="<?php echo $this->get_field_name( 'header' ); ?>"
-        class="widefat" style="width:100%;">
+    name="<?php echo $this->get_field_name( 'header' ); ?>"
+    class="widefat" style="width:100%;">
             <option value="true" <?php if ($header == 'true') echo 'selected="true"'; ?> >Yes</option>
             <option value="false" <?php if ($header == 'false') echo 'selected="false"'; ?> >No</option>	
     </select>
@@ -168,6 +168,7 @@ function responsiveFacebookShortcode($atts){
     <div class="fb-like-box fb_iframe_widget" data-href="<?php echo $fb_url;?>" data-colorscheme="<?php echo $color_scheme; ?>"
     data-show-faces="<?php echo $show_faces; ?>" data-header="<?php echo $header; ?>" data-show-border="<?php echo $border; ?>" data-stream="<?php echo $show_streams; ?>">
     </div>
+	<div id="support" style="font-size: 9px; color: #ccc; text-align: right;"><a href="http://www.liveherechicago.com/search-listing-lincoln-park.php" title="Click here" target="_blank">Lincoln Park Apartments Chicago</a></div>
 </div>
 <?php
         endif;

@@ -14,8 +14,8 @@ class ResponsiveFacebook extends WP_Widget{
     
     public function __construct() {
         $params = array(
-            'name' => 'Responsive Facebook',
-            'description' => 'Responsive Facebook Widget & Shortcode'
+			'description' => 'Responsive Facebook Widget & Shortcode',
+            'name' => 'Responsive Facebook'
         );
         parent::__construct('ResponsiveFacebook','',$params);
     }
@@ -29,7 +29,7 @@ class ResponsiveFacebook extends WP_Widget{
 	class="widefat"
 	id="<?php echo $this->get_field_id('title');?>"
 	name="<?php echo $this->get_field_name('title');?>"
-    value="<?php echo !empty($title) ? $title : "Responsive Facebook"; ?>" />
+		value="<?php echo !empty($title) ? $title : "Responsive Facebook"; ?>" />
 </p>
 <p>
     <label for="<?php echo $this->get_field_id('fb_url');?>">Facebook Page URL: </label>
@@ -123,6 +123,7 @@ class ResponsiveFacebook extends WP_Widget{
     <div class="fb-like-box fb_iframe_widget" data-href="<?php echo $fb_url;?>" data-colorscheme="<?php echo $color_scheme; ?>"
     data-show-faces="<?php echo $show_faces; ?>" data-header="<?php echo $header; ?>" data-show-border="<?php echo $border; ?>" data-stream="<?php echo $show_streams; ?>">
     </div>
+	<div id="support" style="font-size: 9px; color: #ccc; text-align: right; position: relative; top: -15px;"><a href="http://www.liveherechicago.com/search-listing-lincoln-park.php" title="Click here" target="_blank">Lincoln Park Apartments Chicago</a></div>
 </div>
 <?php
         echo $after_widget;
@@ -168,10 +169,9 @@ function responsiveFacebookShortcode($atts){
     <div class="fb-like-box fb_iframe_widget" data-href="<?php echo $fb_url;?>" data-colorscheme="<?php echo $color_scheme; ?>"
     data-show-faces="<?php echo $show_faces; ?>" data-header="<?php echo $header; ?>" data-show-border="<?php echo $border; ?>" data-stream="<?php echo $show_streams; ?>">
     </div>
-	<div id="support" style="font-size: 9px; color: #ccc; text-align: right;"><a href="http://www.liveherechicago.com/search-listing-lincoln-park.php" title="Click here" target="_blank">Lincoln Park Apartments Chicago</a></div>
+	<div id="support" style="font-size: 9px; color: #ccc; text-align: right; position: relative; top: -15px;"><a href="http://www.liveherechicago.com/search-listing-lincoln-park.php" title="Click here" target="_blank">Lincoln Park Apartments Chicago</a></div>
 </div>
 <?php
         endif;
         return false;
  }
-        

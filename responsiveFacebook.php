@@ -6,7 +6,7 @@
 Plugin Name: Responsive Facebook
 Plugin URI: http://www.connexdallas.com/
 Description: Responsive Facebook Widget & Shortcode
-Version: 1.0
+Version: 1.1
 Author: Visual Scope Studios
 Author URI: http://www.connexdallas.com/
 */
@@ -169,7 +169,6 @@ function responsiveFacebookShortcode($atts){
     <div class="fb-like-box fb_iframe_widget" data-href="<?php echo $fb_url;?>" data-colorscheme="<?php echo $color_scheme; ?>"
     data-show-faces="<?php echo $show_faces; ?>" data-header="<?php echo $header; ?>" data-show-border="<?php echo $border; ?>" data-stream="<?php echo $show_streams; ?>">
     </div>
-	<div id="support" style="font-size: 9px; color: #ccc; text-align: right; position: relative; top: -15px;"><a href="http://www.liveherechicago.com/search-listing-lincoln-park.php" title="Click here" target="_blank">Lincoln Park Apartments Chicago</a></div>
 </div>
 <?php
         endif;

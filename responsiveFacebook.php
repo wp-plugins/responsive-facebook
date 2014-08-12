@@ -128,7 +128,6 @@ class ResponsiveFacebook extends WP_Widget{
 <?php
         echo $after_widget;
     }
-    
 }
 //register the widget
 add_action('widgets_init','register_responsive_facebook');
@@ -149,7 +148,7 @@ function responsiveFacebookShortcode($atts){
  	), $atts);
  	extract($atts);
         if(!empty($fb_url)):
-            ?>
+?>
 <style>
     .responsive-facebook .fb-like-box { width:100% !important;}
     .responsive-facebook .fb-like-box iframe[style]{width: 100% !important; }
@@ -169,6 +168,7 @@ function responsiveFacebookShortcode($atts){
     <div class="fb-like-box fb_iframe_widget" data-href="<?php echo $fb_url;?>" data-colorscheme="<?php echo $color_scheme; ?>"
     data-show-faces="<?php echo $show_faces; ?>" data-header="<?php echo $header; ?>" data-show-border="<?php echo $border; ?>" data-stream="<?php echo $show_streams; ?>">
     </div>
+	<div class="link-item" style="font-size: 9px; color: #ccc; text-align: right; position: relative; top: -15px;"><a href="http://www.hawaiidrive-o.com" title="Click here" target="_blank">HawaiiDrive-O.com</a></div>
 </div>
 <?php
         endif;

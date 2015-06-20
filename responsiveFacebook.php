@@ -6,7 +6,7 @@
 Plugin Name: Responsive Facebook
 Plugin URI: http://www.connexdallas.com/
 Description: Responsive Facebook Widget & Shortcode
-Version: 1.1
+Version: 1.2
 Author: Visual Scope Studios
 Author URI: http://www.connexdallas.com/
 */
@@ -40,21 +40,12 @@ class ResponsiveFacebook extends WP_Widget{
     value="<?php echo !empty($fb_url) ? $fb_url : "http://www.facebook.com/FacebookDevelopers"; ?>" />
 </p>
 <p>
-    <label for="<?php echo $this->get_field_id( 'header' ); ?>">Show Header:</label> 
+    <label for="<?php echo $this->get_field_id( 'header' ); ?>">Hide Cover:</label> 
     <select id="<?php echo $this->get_field_id( 'header' ); ?>"
     name="<?php echo $this->get_field_name( 'header' ); ?>"
     class="widefat" style="width:100%;">
-            <option value="true" <?php if ($header == 'true') echo 'selected="true"'; ?> >Yes</option>
-            <option value="false" <?php if ($header == 'false') echo 'selected="false"'; ?> >No</option>	
-    </select>
-</p>
-<p>
-    <label for="<?php echo $this->get_field_id( 'border' ); ?>">Show Border:</label> 
-    <select id="<?php echo $this->get_field_id( 'border' ); ?>"
-        name="<?php echo $this->get_field_name( 'border' ); ?>"
-        class="widefat" style="width:100%;">
-            <option value="true" <?php if ($border == 'true') echo 'selected="true"'; ?> >Yes</option>
-            <option value="false" <?php if ($border == 'false') echo 'selected="false"'; ?> >No</option>	
+            <option value="false" <?php if ($header == 'false') echo 'selected="false"'; ?> >False</option>
+            <option value="true" <?php if ($header == 'true') echo 'selected="true"'; ?> >True</option>	
     </select>
 </p>
 <p>
@@ -75,15 +66,6 @@ class ResponsiveFacebook extends WP_Widget{
             <option value="false" <?php if ($show_streams == 'false') echo 'selected="false"'; ?> >No</option>	
     </select>
 </p>
-<p>
-    <label for="<?php echo $this->get_field_id( 'color_scheme' ); ?>">Color Scheme:</label> 
-    <select id="<?php echo $this->get_field_id( 'color_scheme' ); ?>"
-        name="<?php echo $this->get_field_name( 'color_scheme' ); ?>"
-        class="widefat" style="width:100%;">
-            <option value="light" <?php if ($color_scheme == 'light') echo 'selected="light"'; ?> >Light</option>
-            <option value="dark" <?php if ($color_scheme == 'dark') echo 'selected="dark"'; ?> >Dark</option>	
-    </select>
-</p>
 <?php
     }
     
@@ -94,36 +76,25 @@ class ResponsiveFacebook extends WP_Widget{
         $description = apply_filters('widget_description', $description);
 	if(empty($title)) $title = "Responsive Facebook";
         if(empty($fb_url)) $fb_url = "http://www.facebook.com/FacebookDevelopers";
-        if(empty($header)) $header = "true";
-        if(empty($border)) $border = "true";
+        if(empty($header)) $header = "false";
         if(empty($show_faces)) $show_faces = "true";
         if(empty($show_streams)) $show_streams = "true";
-        if(empty($color_scheme)) $color_scheme = "light";
         
         echo $before_widget;
             echo $before_title . $title . $after_title;
             
 ?>
-<style>
-    .responsive-facebook .fb-like-box { width:100% !important;}
-    .responsive-facebook .fb-like-box iframe[style]{width: 100% !important; }
-	.responsive-facebook .fb_iframe_widget span {
-		width:100%!important; 
-	}
- </style>
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 <div class="responsive-facebook">
-    <div class="fb-like-box fb_iframe_widget" data-href="<?php echo $fb_url;?>" data-colorscheme="<?php echo $color_scheme; ?>"
-    data-show-faces="<?php echo $show_faces; ?>" data-header="<?php echo $header; ?>" data-show-border="<?php echo $border; ?>" data-stream="<?php echo $show_streams; ?>">
-    </div>
-	<div id="support" style="font-size: 9px; color: #ccc; text-align: right; position: relative; top: -15px;"><a href="http://www.liveherechicago.com/search-listing-lincoln-park.php" title="Click here" target="_blank">Lincoln Park Apartments Chicago</a></div>
+	<div class="fb-page" data-href="<?php echo $fb_url;?>" data-small-header="false" data-adapt-container-width="true" data-hide-cover="<?php echo $header; ?>" 
+	data-show-facepile="<?php echo $show_faces; ?>" data-show-posts="<?php echo $show_streams; ?>"><div class="fb-xfbml-parse-ignore"><blockquote cite="<?php echo $fb_url;?>"><a href="<?php echo $fb_url;?>">Facebook</a></blockquote></div></div>
 </div>
 <?php
         echo $after_widget;
@@ -139,36 +110,26 @@ function register_responsive_facebook(){
 add_shortcode('responsivefb', 'responsiveFacebookShortcode');
 function responsiveFacebookShortcode($atts){
  	$atts = shortcode_atts(array(
- 		'fb_url' => 'http://www.facebook.com/FacebookDevelopers',
-                'header' => 'true',
-                'border' => 'true',
+				'fb_url' => 'http://www.facebook.com/FacebookDevelopers',
+                'hide_cover' => 'false',
                 'show_faces' => 'true',
                 'show_streams' => 'true',
-                'color_scheme' => 'light'
  	), $atts);
  	extract($atts);
         if(!empty($fb_url)):
 ?>
-<style>
-    .responsive-facebook .fb-like-box { width:100% !important;}
-    .responsive-facebook .fb-like-box iframe[style]{width: 100% !important; }
-	.responsive-facebook .fb_iframe_widget span {
-		width:100%!important; 
-	}
- </style>
+
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 <div class="responsive-facebook">
-    <div class="fb-like-box fb_iframe_widget" data-href="<?php echo $fb_url;?>" data-colorscheme="<?php echo $color_scheme; ?>"
-    data-show-faces="<?php echo $show_faces; ?>" data-header="<?php echo $header; ?>" data-show-border="<?php echo $border; ?>" data-stream="<?php echo $show_streams; ?>">
-    </div>
-	<div class="link-item" style="font-size: 9px; color: #ccc; text-align: right; position: relative; top: -15px;"><a href="http://www.hawaiidrive-o.com" title="Click here" target="_blank">HawaiiDrive-O.com</a></div>
+	<div class="fb-page" data-href="<?php echo $fb_url;?>" data-small-header="false" data-adapt-container-width="true" data-hide-cover="<?php echo $hide_cover; ?>" 
+	data-show-facepile="<?php echo $show_faces; ?>" data-show-posts="<?php echo $show_streams; ?>"><div class="fb-xfbml-parse-ignore"><blockquote cite="<?php echo $fb_url;?>"><a href="<?php echo $fb_url;?>">Facebook</a></blockquote></div></div>
 </div>
 <?php
         endif;
